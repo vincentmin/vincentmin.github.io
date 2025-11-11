@@ -1,0 +1,35 @@
+# site configuration
+
+remote_theme: pages-themes/hacker@v0.2.0
+plugins:
+- jekyll-remote-theme
+
+lang: en
+
+# main title
+title: Vincent Min
+
+# subtitle
+tagline: Blog
+
+# used by seo meta and the atom feed
+description: Blog by Vincent Min
+
+author:
+  name: Vincent Min
+  # sets the `author.url` property. helps Google to disambiguate the correct author of articles
+  url: https://github.com/vincentmin
+
+# URL to a site-wide logo (e.g.: /assets/your-company-logo.png)
+#logo:
+
+github:
+  username: vincentmin
+
+social:
+  # displayed as the default author of the posts and the copyright owner in the footer
+  name: Vincent Min
+  links:
+    # first element serves as the copyright owner's link
+    - https://github.com/vincentmin
+    - https://www.linkedin.com/in/vincent-simon-min/
