@@ -12,6 +12,10 @@ title: Vincent Min
 # subtitle
 tagline: Blog
 
+# header pages for navigation
+header_pages:
+  - about.md
+
 # used by seo meta and the atom feed
 description: Blog by Vincent Min
 
