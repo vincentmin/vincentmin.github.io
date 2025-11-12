@@ -32,7 +32,7 @@ social:
     - https://www.linkedin.com/in/vincent-simon-min/
 
 # --- Permalinks ---
-permalink: /blog/:title/
+# permalink: /blog/:title/
 
 # --- Excludes ---
 exclude:
