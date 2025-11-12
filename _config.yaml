@@ -4,6 +4,10 @@ theme: jekyll-theme-hacker
 plugins:
   - jekyll-seo-tag
 
+# site configuration
+url: "https://vincentmin.github.io"
+baseurl: "" # Must be empty quotes
+
 lang: en
 
 # main title
