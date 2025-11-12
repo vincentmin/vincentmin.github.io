@@ -1,8 +1,8 @@
 # site configuration
 
-remote_theme: pages-themes/hacker@v0.2.0
+theme: jekyll-theme-hacker
 plugins:
-- jekyll-remote-theme
+  - jekyll-seo-tag
 
 lang: en
 
@@ -37,3 +37,16 @@ social:
     # first element serves as the copyright owner's link
     - https://github.com/vincentmin
     - https://www.linkedin.com/in/vincent-simon-min/
+
+navigation:
+  - title: Home
+    url: /
+  - about: about
+    url: /about/
+
+# --- Permalinks ---
+# This makes your blog post URLs look clean
+permalink: /blog/:title/
+
+exclude:
+  - README.md
