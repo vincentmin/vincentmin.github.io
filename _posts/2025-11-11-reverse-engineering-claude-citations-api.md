@@ -14,7 +14,6 @@ date: 2025-11-11
 }
 </style>
 
-# Reverse engineering Anthropic Claude's API Citation feature
 
 At the start of this year, [Anthropic introduced a new feature in their Claude API](https://claude.com/blog/introducing-citations-api) that allows the model to provide citations for the information it generates. Citing sources is a must-have feature for any serious chatbot that pulls info from databases or documents. Allowing the chatbot to cite its sources is a significant step towards enhancing the reliability and trustworthiness of AI-generated content.
 
@@ -175,8 +174,7 @@ Funnily enough, some of the example citations with `claims` were parsed out and 
         "text": "One of the top AI trends for 2024 is increased adoption of generative AI in various industries"
     }
 ]
-```
-</details>
+```</details>
 
 
 ## Putting it all together
