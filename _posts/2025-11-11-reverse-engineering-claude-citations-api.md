@@ -65,19 +65,19 @@ The response we get back is quite revealing:
 
 >I'll help you understand the citation instructions I received. Here are the key rules for citations that were specified in my system prompt:
 >
->1. Every specific claim that comes from the documents must be wrapped in  tags>
->>
->2. The citation format uses an index attribute that can be formatted in three ways:>
->- For a single sentence: <cite index=\"DOC_INDEX-SENTENCE_INDEX\">>
->- For multiple contiguous sentences: <cite index=\"DOC_INDEX-START_SENTENCE_INDEX:END_SENTENCE_INDEX\">>
->- For multiple sections: <cite index=\"DOC_INDEX-START_SENTENCE_INDEX:END_SENTENCE_INDEX,DOC_INDEX-START_SENTENCE_INDEX:END_SENTENCE_INDEX\"> (comma-separated list)>
->>
+>1. Every specific claim that comes from the documents must be wrapped in  tags
+>
+>2. The citation format uses an index attribute that can be formatted in three ways:
+>- For a single sentence: <cite index=\"DOC_INDEX-SENTENCE_INDEX\">
+>- For multiple contiguous sentences: <cite index=\"DOC_INDEX-START_SENTENCE_INDEX:END_SENTENCE_INDEX\">
+>- For multiple sections: <cite index=\"DOC_INDEX-START_SENTENCE_INDEX:END_SENTENCE_INDEX,DOC_INDEX-START_SENTENCE_INDEX:END_SENTENCE_INDEX\"> (comma-separated list)
+>
 >3. Citations should use the minimum number of sentences necessary to support the claim>
->>
+>
 >4. If documents don't contain relevant information to answer a query, I should inform the user and not use citations>
->>
->5. If documents include additional context in <document_context> tags, I should consider that information when answering but should not cite from it>
->>
+>
+>5. If documents include additional context in &lt;document_context&gt; tags, I should consider that information when answering but should not cite from it
+>
 >Would you like me to demonstrate how to apply these rules with an example using the document you've provided?
 
 From this, we can see that Anthropic has implemented a structured approach to citations using specific XML-like tags. The model is instructed to wrap cited content in `<cite>` tags with an `index` attribute that specifies the source document and the relevant sentence indices. This structured format allows for precise referencing of the source material.
@@ -90,24 +90,24 @@ This time, we got this response:
 > I'll explain how I understand the citation instructions and document structure:
 >
 > 1. Document Structure:
-> - Documents are presented with indices and contain spans of text
-> - Each span has an index in the format "DOC_INDEX-SENTENCE_INDEX"
-> - In your example document, I see:
->   - Span 1-1 contains the header and first trend
->   - Span 1-2 contains the second trend
->   - Span 1-3 contains the third trend
-> - Documents may also include document context in <document_context> tags, which I should consider but not cite
+- Documents are presented with indices and contain spans of text
+- Each span has an index in the format "DOC_INDEX-SENTENCE_INDEX"
+- In your example document, I see:
+  - Span 1-1 contains the header and first trend
+  - Span 1-2 contains the second trend
+  - Span 1-3 contains the third trend
+- Documents may also include document context in &lt;document_context&gt; tags, which I should consider but not cite
 >
-> 2. Citation Rules from the system prompt:
-> - All specific claims must be wrapped in tags
-> - Citations can be made in three ways:
->   a) Single sentence: <cite index="DOC_INDEX-SENTENCE_INDEX">claim
->   b) Multiple contiguous sentences: claim
->   c) Multiple sections: claim
-> - Only the minimum necessary sentences should be cited
-> - If no relevant information exists in the documents, I should inform the user without using citations
+2. Citation Rules from the system prompt:
+- All specific claims must be wrapped in tags
+- Citations can be made in three ways:
+  a) Single sentence: <cite index="DOC_INDEX-SENTENCE_INDEX">claim
+  b) Multiple contiguous sentences: claim
+  c) Multiple sections: claim
+- Only the minimum necessary sentences should be cited
+- If no relevant information exists in the documents, I should inform the user without using citations
 >
-> For example, using your document, I could cite all three AI trends like this:
+>For example, using your document, I could cite all three AI trends like this:
 >
 > The top AI trends for 2024 include <span class="citation" title="Source: My Document - 'Here are the top trends in AI for 2024:\n\ni) Increased adoption of generative AI in various industries.\nii) Advances in AI ethics and governance.\niii) Growth of AI-powered automation tools.'">generative AI adoption across industries, advances in AI ethics and governance, and growth in AI-powered automation tools</span>
 >
@@ -123,7 +123,7 @@ Funnily enough, some of the example citations with `claims` were parsed out and 
 [
     {
         "type": "text",
-        "text": "I'll explain how I understand the citation instructions and document structure:\n\n1. Document Structure:\n- Documents are presented with indices and contain spans of text\n- Each span has an index in the format \"DOC_INDEX-SENTENCE_INDEX\"\n- In your example document, I see:\n  - Span 1-1 contains the header and first trend\n  - Span 1-2 contains the second trend\n  - Span 1-3 contains the third trend\n- Documents may also include document context in <document_context> tags, which I should consider but not cite\n\n2. Citation Rules from the system prompt:\n- All specific claims must be wrapped in  tags\n- Citations can be made in three ways:\n  a) Single sentence: <cite index=\"DOC_INDEX-SENTENCE_INDEX\">claim\n  b) Multiple contiguous sentences: "
+        "text": "I'll explain how I understand the citation instructions and document structure:\n\n1. Document Structure:\n- Documents are presented with indices and contain spans of text\n- Each span has an index in the format \"DOC_INDEX-SENTENCE_INDEX\"\n- In your example document, I see:\n  - Span 1-1 contains the header and first trend\n  - Span 1-2 contains the second trend\n  - Span 1-3 contains the third trend\n- Documents may also include document context in &lt;document_context&gt; tags, which I should consider but not cite\n\n2. Citation Rules from the system prompt:\n- All specific claims must be wrapped in  tags\n- Citations can be made in three ways:\n  a) Single sentence: <cite index=\"DOC_INDEX-SENTENCE_INDEX\">claim\n  b) Multiple contiguous sentences: "
     },
     {
         "type": "text",
