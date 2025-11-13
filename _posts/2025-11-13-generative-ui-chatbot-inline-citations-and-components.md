@@ -153,7 +153,7 @@ const Cite = ({ documentKey, page, startText, endText }) => {
 ```
 
 The clever part here is to use the Text Fragments feature of modern browsers to highlight the cited text in the PDF. This way, we don't need any libraries to parse and highlight the document. The Text Fragments API conveniently just asks for `textStart` and `textEnd`, which the LLM can provide easily.
-Here is an example link to try it out: https://vincentmin.github.io/2025/11/11/generative-ui-chatbot-inline-citations-and-components.html#:~:text=here%20is%20an,cool%20is%20that
+Here is an example link to try it out: [https://vincentmin.github.io/2025/11/13/generative-ui-chatbot-inline-citations-and-components.html#:~:text=here%20is%20an,cool%20is%20that](https://vincentmin.github.io/2025/11/13/generative-ui-chatbot-inline-citations-and-components.html#:~:text=here%20is%20an,cool%20is%20that)
 How cool is that?
 
 These days most modern browsers support Text Fragments. As of recently, Google Chrome even supports Text Fragments for PDFs. This is really fantastic, as we can handle any other document type by converting it to PDF.
