@@ -22,10 +22,10 @@ I find the idea of mixing natural language content with xml-like tags quite insp
 
 ## The system prompt
 
-A good place to start undertanding any agentic architecture is the system prompt.
+A good place to start understanding any agentic architecture is the system prompt.
 I always strive to keep the system prompt as simple as possible. The architecture I will outline here leads to a particularly simple system prompt. Here's the one I use for this architecture:
 
->You are Dan, an AI assistant who is an expert at suggestion travel tips.
+>You are Dan, an AI assistant who is an expert at suggesting travel tips.
 >Your purpose is to show off the ability to embed custom html components in your answers.
 >You can include the following html components in your answers to enhance the user experience:
 >
@@ -79,7 +79,7 @@ const sanitizeSchema = {
 };
 ```
 
-Having set this up, all that rests is to implement the `Maps` component. Here we can make use of an iframe to embed Google Maps:
+Having set this up, all that remains is to implement the `Maps` component. Here we can make use of an iframe to embed Google Maps:
 
 ```jsx
 const Maps = ({ location }) => {
@@ -143,11 +143,9 @@ const Cite = ({ documentKey, page, startText, endText }) => {
 };
 ```
 
-The clever part here is to use the Text Fragments feature of modern browsers to highlight the cited text in the PDF. This way, we don't need any libraries to parse and highlight the document.
-The Text Fragments API convieniently just asks for `textStart` and `textEnd`, which the LLM can provide easily.
-These days most modern browsers support Text Fragments.
-As of recently, Google Chrome even supports Text Fragments for PDFs. This is really fantastic, as we can handle any other document type by converting it to PDF.
-If the LLM or the Text Framents API messes up the cited text, we fall back on the `#page=` parameter to at least open the document at the correct page.
+The clever part here is to use the Text Fragments feature of modern browsers to highlight the cited text in the PDF. This way, we don't need any libraries to parse and highlight the document. The Text Fragments API conveniently just asks for `textStart` and `textEnd`, which the LLM can provide easily.
+These days most modern browsers support Text Fragments. As of recently, Google Chrome even supports Text Fragments for PDFs. This is really fantastic, as we can handle any other document type by converting it to PDF.
+If the LLM or the Text Fragments API messes up the cited text, we fall back on the `#page=` parameter to at least open the document at the correct page.
 
 Here is the application in action:
 ![Citations in action](../assets/images/pdf-citations.png)
@@ -159,9 +157,9 @@ Clicking on the second citation badge opens the document at the correct page and
 
 Let's revisit the Anthropic Citation API for a moment. Their approach is similar in that the LLM sprinkles xml-like tags in its output. However, I prefer the approach outlined here for a few reasons:
 - They first pre-process the documents by extracting text and prefixing the document and span id to each snippet. This is a lot of extra engineering work, adds delay, and it bloats the prompt with many tokens.
-- Th id prefixing approach relies on OCR/text extraction of the document. For images, there is no way to prefix the span ids. This is quite limiting. It seems that both Anthropic and OpenAI feed files to the LLM as both images and OCR-text. Yet, [Gemini genuinely](https://ai.google.dev/gemini-api/docs/document-processing feeds only the images as text].
+- The id prefixing approach relies on OCR/text extraction of the document. For images, there is no way to prefix the span ids. This is quite limiting. It seems that both Anthropic and OpenAI feed files to the LLM as both images and OCR-text. Yet, [Gemini genuinely](https://ai.google.dev/gemini-api/docs/document-processing feeds only the images as text].
 
-Of course, Anthropic built an API and have no control over how users render the text. It makes total sense that they parse out the tags and leave it to the developer to render them. Because I'm assuming we have full control over the backend frontend, we can take a more lightweight approach.
+Of course, Anthropic built an API and have no control over how users render the text. It makes total sense that they parse out the tags and leave it to the developer to render them. Because I'm assuming we have full control over both the backend and frontend, we can take a more lightweight approach.
 
 ## Conclusion
 
