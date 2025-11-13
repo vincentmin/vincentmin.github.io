@@ -95,7 +95,7 @@ Now if the chatbot replies with:
 >You should visit <Maps location="Amsterdam, Netherlands" /> and get a stroopwafel.
 
 We see
-![Amsterdam](../assets/images/amsterdam.png)
+![Amsterdam]({{ site.baseurl }}/assets/images/amsterdam.png)
 
 Fantastic!
 
@@ -148,10 +148,10 @@ These days most modern browsers support Text Fragments. As of recently, Google C
 If the LLM or the Text Fragments API messes up the cited text, we fall back on the `#page=` parameter to at least open the document at the correct page.
 
 Here is the application in action:
-![Citations in action](../assets/images/pdf-citations.png)
+![Citations in action]({{ site.baseurl }}/assets/images/pdf-citations.png)
 
 Clicking on the second citation badge opens the document at the correct page and highlights the cited text:
-![Cited text highlighted](../assets/images/pdf-sheet.png)
+![Cited text highlighted]({{ site.baseurl }}/assets/images/pdf-sheet.png)
 
 ## Comparison to Anthropic's Citation API
 
