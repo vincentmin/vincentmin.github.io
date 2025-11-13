@@ -105,7 +105,7 @@ I'm quite fond of this architecture. We needed no tools, no complex system instr
 
 Because this base principle is so simple, we can combine it with other capabilities. Even if your system prompt is complex due to business logic, I'm pretty hopeful that asking the model to sprinkle some xml-like tags in its output will not hamper its performance.
 
-## On to citations
+## On to citations using Text Fragments
 
 The Maps example was fun, but let's move on to something more useful: citations.
 We apply the same principle as before, adding a `Cite` component to our system prompt. Below the `Maps` component instructions, we add:
@@ -144,6 +144,9 @@ const Cite = ({ documentKey, page, startText, endText }) => {
 ```
 
 The clever part here is to use the Text Fragments feature of modern browsers to highlight the cited text in the PDF. This way, we don't need any libraries to parse and highlight the document. The Text Fragments API conveniently just asks for `textStart` and `textEnd`, which the LLM can provide easily.
+Here is an example link to try it out: https://vincentmin.github.io/2025/11/11/generative-ui-chatbot-inline-citations-and-components.html#:~:text=here%20is%20an,cool%20is%20that
+How cool is that?
+
 These days most modern browsers support Text Fragments. As of recently, Google Chrome even supports Text Fragments for PDFs. This is really fantastic, as we can handle any other document type by converting it to PDF.
 If the LLM or the Text Fragments API messes up the cited text, we fall back on the `#page=` parameter to at least open the document at the correct page.
 
@@ -156,11 +159,17 @@ Clicking on the second citation badge opens the document at the correct page and
 ## Comparison to Anthropic's Citation API
 
 Let's revisit the Anthropic Citation API for a moment. Their approach is similar in that the LLM sprinkles xml-like tags in its output. However, I prefer the approach outlined here for a few reasons:
-- They first pre-process the documents by extracting text and prefixing the document and span id to each snippet. This is a lot of extra engineering work, adds delay, and it bloats the prompt with many tokens.
-- The id prefixing approach relies on OCR/text extraction of the document. For images, there is no way to prefix the span ids. This is quite limiting. [Both Anthropic and OpenAI feed files to the LLM as both images and OCR-text](https://docs.claude.com/en/docs/build-with-claude/pdf-support#:~:text=Processes%20each%20page%20as%20both%20text%20and%20image%20for%20comprehensive%20understanding). Yet, [Gemini genuinely feeds only the images as text](https://ai.google.dev/gemini-api/docs/document-processing).
+- It is model provider agnostic. Even though OpenAI has yet to release a citation API, this approach works just as well with OpenAI as any other LLM provider.
+- Anthropic first pre-process the documents by extracting text and prefixing the document and span id to each snippet. This is a lot of extra engineering work (that Anthropic kindly did for us), adds delay, and it bloats the prompt with many tokens.
+- When using the Citation API, Anthropic injects specific instructions into the system prompt that we have no control over.
+- The id prefixing approach relies on OCR/text extraction of the document. For images, there is no way to prefix the span ids. This is quite limiting. [Both Anthropic and OpenAI feed files to the LLM as both images and OCR-text](https://docs.claude.com/en/docs/build-with-claude/pdf-support#:~:text=Processes%20each%20page%20as%20both%20text%20and%20image%20for%20comprehensive%20understanding). Yet, [Gemini genuinely feeds only the images as text](https://ai.google.dev/gemini-api/docs/document-processing). This means that Google would need an entirely different approach to the one of Anthropic if they were to implement their own citation API.
 
 Of course, Anthropic built an API and have no control over how users render the text. It makes total sense that they parse out the tags and leave it to the developer to render them. Because I'm assuming we have full control over both the backend and frontend, we can take a more lightweight approach.
 
 ## Conclusion
 
 Mixing natural language generation with xml-like tags is a powerful technique to build rich user experiences with LLMs. The LLM sprinkles tags in its output, which are then parsed and rendered as actual components in the frontend. It unburdens the LLM from having to think about the rendering details, and allows developers to build custom components with standard software engineering practices.
+
+Furthermore, we can make clever use of existing web platform features such as Text Fragments to implement powerful components like citations with minimal engineering effort.
+
+You can define any component you like, so the possibilities are endless. Happy coding!
