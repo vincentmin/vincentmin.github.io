@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Generative UI: Chatbot Inline Citations and Components"
-date: 2025-11-11
+date: 2025-11-13
 ---
 
 <style>
@@ -13,6 +13,7 @@ date: 2025-11-11
   background-color: #fff3cd;
 }
 </style>
+
 
 Most generative AI applications today use a chatbot interface to interact with users. Natural language is a familiar input for users and LLMs are specifically designed to handle it well. Today's LLMs can do much more than just generate natural language though, and we would do well to leverage their full capabilities to build richer user experiences.
 
