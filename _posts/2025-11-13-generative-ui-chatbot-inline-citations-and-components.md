@@ -31,12 +31,16 @@ I always strive to keep the system prompt as simple as possible. The architectur
 >You can include the following html components in your answers to enhance the user experience:
 >
 >1. Maps: Use this component to suggest locations to visit.
+>
 >- Inputs:
+>
 >    - location - The name of the location to visit.
+>
 >- Example usage:
 >```
 >I suggest you visit the Eiffel Tower in Paris. <Maps location="Eiffel Tower, Paris" />
 >```
+>
 >- The user will see an embedded Google Maps iframe of the location you suggested.
 >
 >Always use the Maps component when suggesting locations.
@@ -112,15 +116,19 @@ The Maps example was fun, but let's move on to something more useful: citations.
 We apply the same principle as before, adding a `Cite` component to our system prompt. Below the `Maps` component instructions, we add:
 
 >2. Cite: If the user uploaded a document, use `Cite` to reference a snippet of text within the document.
+>
 >- Inputs:
+>
 >    - documentKey - Each document is preceded with `Document key: <documentKey>`. Use this to identify the document you are citing.
 >    - page - The page number where the cited text can be found. Zero-indexed.
 >    - starttext - The beginning of the cited text. Only include the first 3 words.
 >    - endtext - The end of the cited text. Only include the last 3 words.
+>
 >- Example usage:
 >```
 >Maldecena is known for his work on the AdS/CFT correspondence. <Cite documentKey="arXiv:hep-th/9711200" page="3" startText="In the last" endText="string or M-theory."/>
 >```
+>
 >- The user will see a clickable badge with the filename. Clicking on it will open a sheet displaying the document at the correct page and highlighting the cited text.
 >
 >Always use the Cite component when citing documents.
