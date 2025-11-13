@@ -157,7 +157,7 @@ Clicking on the second citation badge opens the document at the correct page and
 
 Let's revisit the Anthropic Citation API for a moment. Their approach is similar in that the LLM sprinkles xml-like tags in its output. However, I prefer the approach outlined here for a few reasons:
 - They first pre-process the documents by extracting text and prefixing the document and span id to each snippet. This is a lot of extra engineering work, adds delay, and it bloats the prompt with many tokens.
-- The id prefixing approach relies on OCR/text extraction of the document. For images, there is no way to prefix the span ids. This is quite limiting. It seems that both Anthropic and OpenAI feed files to the LLM as both images and OCR-text. Yet, [Gemini genuinely feeds only the images as text](https://ai.google.dev/gemini-api/docs/document-processing).
+- The id prefixing approach relies on OCR/text extraction of the document. For images, there is no way to prefix the span ids. This is quite limiting. [Both Anthropic and OpenAI feed files to the LLM as both images and OCR-text](https://docs.claude.com/en/docs/build-with-claude/pdf-support#:~:text=Processes%20each%20page%20as%20both%20text%20and%20image%20for%20comprehensive%20understanding). Yet, [Gemini genuinely feeds only the images as text](https://ai.google.dev/gemini-api/docs/document-processing).
 
 Of course, Anthropic built an API and have no control over how users render the text. It makes total sense that they parse out the tags and leave it to the developer to render them. Because I'm assuming we have full control over both the backend and frontend, we can take a more lightweight approach.
 
