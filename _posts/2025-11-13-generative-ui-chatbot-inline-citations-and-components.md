@@ -169,11 +169,12 @@ Clicking on the second citation badge opens the document at the correct page and
 
 Let's revisit the Anthropic Citation API for a moment. Their approach is similar in that the LLM sprinkles xml-like tags in its output. However, I prefer the approach outlined here for a few reasons:
 - It is model provider agnostic. Even though OpenAI has yet to release a citation API, this approach works just as well with OpenAI as any other LLM provider.
-- Anthropic first pre-process the documents by extracting text and prefixing the document and span id to each snippet. This is a lot of extra engineering work (that Anthropic kindly did for us), adds delay, and it bloats the prompt with many tokens.
+- Anthropic first pre-process the documents by extracting text and prefixing the document and span id to each snippet. This is a lot of extra engineering work (that Anthropic kindly did for us), adds delay, and it bloats the prompt with additional tokens.
 - When using the Citation API, Anthropic injects specific instructions into the system prompt that we have no control over.
 - The id prefixing approach relies on OCR/text extraction of the document. For images, there is no way to prefix the span ids. This is quite limiting. [Both Anthropic and OpenAI feed files to the LLM as both images and OCR-text](https://docs.claude.com/en/docs/build-with-claude/pdf-support#:~:text=Processes%20each%20page%20as%20both%20text%20and%20image%20for%20comprehensive%20understanding). Yet, [Gemini genuinely feeds only the images as text](https://ai.google.dev/gemini-api/docs/document-processing). This means that Google would need an entirely different approach to the one of Anthropic if they were to implement their own citation API.
+- The main reason I prefer this approach is that it extends beyond citations. We can define any component we like, such as maps, images, links, call-to-actions, and so on. The possibilities are endless.
 
-Of course, Anthropic built an API and have no control over how users render the text. It makes total sense that they parse out the tags and leave it to the developer to render them. Because I'm assuming we have full control over both the backend and frontend, we can take a more lightweight approach.
+Of course, Anthropic built an API and have no control over how users render the text. It makes total sense that they parse out the tags and leave it to the developer to render them. We have the luxury of full control over both the backend and frontend, so we can build a more integrated experience.
 
 ## Conclusion
 
